@@ -10,8 +10,8 @@ class Hex_Solution
 
     test_case_quantity = input.shift.to_i
 
-    test_case_quantity.times do
-      grid_length = input.shift
+    test_case_quantity.times do |case|
+      grid_length = input.shift.to_i
       row1 = input.shift.chars
       row2 = input.shift.chars
 
@@ -20,11 +20,10 @@ class Hex_Solution
 
       i, j = 0, 0
       if (row1.count("1") + row2.count("1")).even?
-        # Check for corner cases. IF none are met, THEN:
-
-        result.push "YES"
-      else
-        result.push "NO"
+        # Check for corner cases. IF none are met, THEN push "YES" into result.
+        if true
+          result.push "YES"
+        end
       end
 
         # Checking only for the impossible scenarios (assuming they are finite)
