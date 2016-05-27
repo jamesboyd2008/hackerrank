@@ -1,24 +1,24 @@
-# Enter your code here. Read input from STDIN. Print output to STDOUT
-# STDIN.each { |el| puts el.class } # => They're all strings.
-# STDOUT = [] # => don't do this, b/c STDOUT is already defined
+# Impossible grids:
 
+  # Any grid with an odd number of black cells
 
-        # Checking only for the impossible scenarios (assuming they are finite)
-        # IF none are found, push "YES" into result.
-        # ELSE push "NO" into result.
-        # Impossible scenarios are as follows:
-        # These 4 scenarios don't work
-        #   [0, 0]     [0, 0]     [1, 0]     [0, 1]
-        #     [1, 0]     [0, 1]     [0, 0]     [0, 0]
+  # [0, 0, 0, 1, 0, 0, 0]
+  #   [0, 0, 1, 0, 0, 0, 0]
+  # The one above is impossible because of the odd number of cells to the left of
+  # the black blockade.
 
-        # Now I'm wondering if there just has to be an even number of black cells
-        # dispersed in any fashion other than the corner cases...
-        # Must write some tests!
+  # pick up here.  Find a "NO" grid with an even number of black cells, without
+  # positioning one top-right of the other.
+  # [0, 0, 0, 0, 0, 0, 0]
+  #   [0, 0, 0, 0, 0, 0, 0]
 
-        # r = red, m = maroon, y = yellow
-        # 1 = black, 0 != black
+# r = red, m = maroon, y = yellow
+# 1 = black, 0 != black
 
 class HexSolution
+
+  # INPUT: An array of test cases
+  # OUTPUT: An array of answers regarding the passibility of those test cases.
   def solution test_cases
     result = []
 
@@ -27,27 +27,41 @@ class HexSolution
 
     test_case_quantity = input.shift.to_i
 
-    test_case_quantity.times do |test_number|
+    test_case_quantity.times do
       grid_length = input.shift.to_i
       row1 = input.shift.chars
       row2 = input.shift.chars
 
-
-
-      i, j = 0, 0
-      if (row1.count("1") + row2.count("1")).even?
-        # Check for corner cases. IF none are met, THEN push "YES" into result.
-        # if true # pick up here. Look for better corner cases. Diagonals and such.
-          result.push "YES"
-        # end
-      end
-      if result.length < test_number + 1
+      if (row1.count("1") + row2.count("1")).even? && clear?(row1, row2)
+        result.push "YES"
+      else
         result.push "NO"
       end
     end
 
-    # STDOUT is just whatever you puts
     result.each { |answer| puts answer } # what about last one? newline char?
     result
   end
+
+  private
+
+  # INPUT: Two arrays
+  # OUTPUT: boolean
+  def clear?(row1, row2)
+    top_black_indeces = []
+    row1.each_with_index do |cell, index|
+      if cell == "1"
+        top_black_indeces << index
+      end
+    end
+
+    top_black_indeces.each do |index|
+      if row2[index - 1] == "1"
+        return false
+      end
+    end
+
+    true
+  end
+
 end
