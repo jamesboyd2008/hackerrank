@@ -10,8 +10,9 @@ describe HexSolution do
 
   # [0, 0, 1, 0, 0]
   #   [0, 1, 0, 0, 0]
-  test2 = ["1", "5", "00100", "01000"]
-  answer2 = ["NO"]
+  test2 = ["4", "5", "00100", "01000", "11", "10000000000", "00000000000",
+          "5", "00100", "10101", "4", "0010", "1011"]
+  answer2 = ["NO", "NO", "NO", "NO"]
 
   it "returns the correct results" do
     expect(hexy.solution(test1)).to eq(answer1)

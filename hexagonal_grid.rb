@@ -7,8 +7,16 @@
   # The one above is impossible because of the odd number of cells to the left of
   # the black blockade.
 
-  # pick up here.  Find a "NO" grid with an even number of black cells, without
-  # positioning one top-right of the other.
+  # handle legal diagonal slice
+  # [0, 0, 1, 0, 0]
+  #   [1, 0, 1, 0, 1]
+
+  # legal diagonal slice creates problems on both sides.
+  # [0, 0, 1, 0]
+  #   [1, 0, 1, 1]
+
+
+
   # [0, 0, 0, 0, 0, 0, 0]
   #   [0, 0, 0, 0, 0, 0, 0]
 
