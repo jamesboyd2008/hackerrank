@@ -63,14 +63,25 @@ class HexSolution
       end
     end
 
+    # a 'slice' or 'splice' is when there is a black cell top-left of a black cell.
     top_black_indeces.each do |index|
-      # illegal slice
+      # illegal slice?
       if row2[index - 1] == '1'
         return false
-      # legal slice
+      # legal slice?
       elsif row2[index] == '1'
-        left_grid = [row1[0..index - 1].join, row2[0..index - 1].join]
-        right_grid = [row1[index + 1..-1].join, row2[index + 1..-1].join]
+        # Is there room to the left of the slice?
+        if row1[index - 1] != nil
+          left_grid = [row1[0..index - 1].join, row2[0..index - 1].join]
+        else
+          left_grid = ['0', '0']
+        end
+        # Is there room to the right of the slice?
+        if row1[index + 1] != nil
+          right_grid = [row1[index + 1..-1].join, row2[index + 1..-1].join]
+        else
+          right_grid = ['0', '0']
+        end
 
         left_passibility = solution(['1', (index + 1).to_s,
           left_grid[0], left_grid[1]])[0]
