@@ -19,14 +19,19 @@ class Hex_Solution
       # 1 = black, 0 != black
 
       i, j = 0, 0
-      while i < row1.length && j < row2.length
+      if (row1.count("1") + row2.count("1")).even?
+        # Check for corner cases. IF none are met, THEN:
+
+        result.push "YES"
+      else
+        result.push "NO"
+      end
 
         # Checking only for the impossible scenarios (assuming they are finite)
         # IF none are found, push "YES" into result.
         # ELSE push "NO" into result.
         # Impossible scenarios are as follows:
-        # These 4 scenarios need another black cell horizontally OR
-        # vertically adjacent OR on another row.
+        # These 4 scenarios don't work
         #   [0, 0]     [0, 0]     [1, 0]     [0, 1]
         #     [1, 0]     [0, 1]     [0, 0]     [0, 0]
 
@@ -34,17 +39,11 @@ class Hex_Solution
         # dispersed in any fashion other than the corner cases...
         # Must write some tests!
 
-        do
-
-        end
-        # increment i and j somewhere
-      end
-
-
+      result
     end
 
     # STDOUT is just whatever you puts
     result.each { |answer| puts answer } # what about last one? newline char?
-
+    result
   end
 end
