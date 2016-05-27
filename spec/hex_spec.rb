@@ -12,13 +12,12 @@ describe HexSolution do
           '5', '00100', '10101', '4', '0010', '1011']
   answer2 = ['NO', 'NO', 'NO', 'NO']
 
-  # [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  #   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  # [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  #   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
-  # [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  #   [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
+  # splicey8row1 = [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+  #   splicey8row2 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
 
   splicey1row1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   splicey1row2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -44,6 +43,18 @@ describe HexSolution do
   splicey6row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
   splicey6 = [splicey6row1.length.to_s, splicey6row1.join, splicey6row2.join]
 
+  splicey7row1 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1]
+  splicey7row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1]
+  splicey7 = [splicey7row1.length.to_s, splicey7row1.join, splicey7row2.join]
+
+  splicey8row1 = [1, 0, 0, 0]
+  splicey8row2 = [1, 0, 0, 0]
+  splicey8 = [splicey8row1.length.to_s, splicey8row1.join, splicey8row2.join]
+
+  # splicey8row1 = [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+  # splicey8row2 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+  # splicey8 = [splicey8row1.length.to_s, splicey8row1.join, splicey8row2.join]
+
   # pick up here. question: splicey test case with back-to-back splices?
 
   splicey_tests = [
@@ -52,11 +63,13 @@ describe HexSolution do
     splicey3[0], splicey3[1], splicey3[2],
     splicey4[0], splicey4[1], splicey4[2],
     splicey5[0], splicey5[1], splicey5[2],
-    splicey6[0], splicey6[1], splicey6[2]
+    splicey6[0], splicey6[1], splicey6[2],
+    splicey7[0], splicey7[1], splicey7[2]
+    # splicey8[0], splicey8[1], splicey8[2]
   ]
 
-  splicey_tests.unshift splicey_tests.length / 3
-  splicey_answers = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO']
+  splicey_tests.unshift (splicey_tests.length / 3).to_s
+  splicey_answers = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES']#, 'YES']
 
   it 'returns the correct results' do
     expect(hexy.solution(test1)).to eq(answer1)

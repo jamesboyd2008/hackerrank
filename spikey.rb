@@ -1,38 +1,8 @@
-# Impossible grids:
-
-  # Any grid with an odd number of black cells
-
-  # [0, 0, 0, 1, 0, 0, 0]
-  #   [0, 0, 1, 0, 0, 0, 0]
-  # The one above is impossible because of the odd number of cells to the left of
-  # the black blockade.
-
-  # handle legal diagonal slice
-  # [0, 0, 1, 0, 0]
-  #   [1, 0, 1, 0, 1]
-
-  # legal diagonal slice creates problems on both sides.
-  # [0, 0, 1, 0]
-  #   [1, 0, 1, 1]
-
-
-
-  # [0, 0, 0, 0, 0, 0, 0]
-  #   [0, 0, 0, 0, 0, 0, 0]
-
-# r = red, m = maroon, y = yellow
-# 1 = black, 0 != black
-
 class HexSolution
 
-  def initialize
-    @layers = 0
-  end
-  
   # INPUT: An array of test cases
   # OUTPUT: An array of answers regarding the passibility of those test cases.
   def solution test_cases
-    @layers += 1
     result = []
 
     input = []
@@ -46,7 +16,6 @@ class HexSolution
       row2 = input.shift.chars
 
       if (row1.count('1') + row2.count('1')).even? && clear?(row1, row2)
-
         result.push 'YES'
       else
         result.push 'NO'
@@ -54,7 +23,7 @@ class HexSolution
     end
 
     result.each { |answer| puts answer } # what about last one? newline char?
-    result
+    # result
   end
 
   private
@@ -62,6 +31,7 @@ class HexSolution
   # INPUT: Two arrays
   # OUTPUT: boolean
   def clear?(row1, row2)
+    puts 'trigger' #nested? variable
     top_black_indeces = []
     row1.each_with_index do |cell, index|
       if cell == '1'
@@ -105,3 +75,6 @@ class HexSolution
   end
 
 end
+
+derp = HexSolution.new
+derp.solution ['1', '2', '01', '01']
