@@ -40,10 +40,10 @@ class HexSolution
       row1 = input.shift.chars
       row2 = input.shift.chars
 
-      if (row1.count("1") + row2.count("1")).even? && clear?(row1, row2)
-        result.push "YES"
+      if (row1.count('1') + row2.count('1')).even? && clear?(row1, row2)
+        result.push 'YES'
       else
-        result.push "NO"
+        result.push 'NO'
       end
     end
 
@@ -58,14 +58,29 @@ class HexSolution
   def clear?(row1, row2)
     top_black_indeces = []
     row1.each_with_index do |cell, index|
-      if cell == "1"
+      if cell == '1'
         top_black_indeces << index
       end
     end
 
     top_black_indeces.each do |index|
-      if row2[index - 1] == "1"
+      # illegal slice
+      if row2[index - 1] == '1'
         return false
+      # legal slice
+      elsif row2[index] == '1'
+        left_grid = [row1[0..index - 1].join, row2[0..index - 1].join]
+        right_grid = [row1[index + 1..-1].join, row2[index + 1..-1].join]
+
+        left_passibility = solution(['1', (index + 1).to_s,
+          left_grid[0], left_grid[1]])[0]
+
+        right_passibility = solution(['1', (row1.length - (index + 1)).to_s,
+          right_grid[0], right_grid[1]])[0]
+
+        if left_passibility == "NO" || right_passibility == "NO"
+          return false
+        end
       end
     end
 
