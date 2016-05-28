@@ -19,40 +19,43 @@ describe HexSolution do
   # splicey8row1 = [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
   #   splicey8row2 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
 
-  splicey1row1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  splicey1row2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+# splicey1row1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] #peanuts, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
+  splicey1row1 = [0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+  splicey1row2 = [0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
   splicey1 = [splicey1row1.length.to_s, splicey1row1.join, splicey1row2.join]
 
-  splicey2row1 = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  splicey2row2 = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  splicey2row1 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+  splicey2row2 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
   splicey2 = [splicey2row1.length.to_s, splicey2row1.join, splicey2row2.join]
 
-  splicey3row1 = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  splicey3row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  splicey3row1 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0]
+  splicey3row2 = [0, 1, 0, 1, 0, 0, 1, 0, 0, 0]
   splicey3 = [splicey3row1.length.to_s, splicey3row1.join, splicey3row2.join]
 
-  splicey4row1 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  splicey4row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  splicey4row1 = [0, 1, 0, 0, 0, 0, 1, 0, 0, 0]
+  splicey4row2 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
   splicey4 = [splicey4row1.length.to_s, splicey4row1.join, splicey4row2.join]
 
-  splicey5row1 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
-  splicey5row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  splicey5row1 = [0, 0, 1, 0, 0, 0, 1, 0, 1, 0]
+  splicey5row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0]
   splicey5 = [splicey5row1.length.to_s, splicey5row1.join, splicey5row2.join]
 
-  splicey6row1 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
-  splicey6row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+  splicey6row1 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+  splicey6row2 = [0, 1, 0, 0, 0, 0, 1, 0, 0, 0]
   splicey6 = [splicey6row1.length.to_s, splicey6row1.join, splicey6row2.join]
 
-  splicey7row1 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1]
-  splicey7row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1]
+  splicey7row1 = [0, 0, 1, 0, 0, 0, 1, 0, 0, 1]
+  splicey7row2 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 1]
   splicey7 = [splicey7row1.length.to_s, splicey7row1.join, splicey7row2.join]
 
   splicey8row1 = [1, 0, 0, 0]
   splicey8row2 = [1, 0, 0, 0]
   splicey8 = [splicey8row1.length.to_s, splicey8row1.join, splicey8row2.join]
 
-  splicey9row1 = [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
-  splicey9row2 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+  splicey9row1 = [1, 0, 1, 0, 0, 0, 1, 1, 0, 0]
+  splicey9row2 = [1, 0, 0, 1, 0, 0, 1, 1, 0, 0]
   splicey9 = [splicey9row1.length.to_s, splicey9row1.join, splicey9row2.join]
 
   splicey10row1 = [1, 1]
@@ -63,7 +66,23 @@ describe HexSolution do
   splicey11row2 = [1]
   splicey11 = [splicey11row1.length.to_s, splicey11row1.join, splicey11row2.join]
 
+  splicey12row1 = []
+  splicey12row2 = []
+  splicey12 = [splicey12row1.length.to_s, splicey12row1.join, splicey12row2.join]
 
+  splicey13row1 = [0]
+  splicey13row2 = [0]
+  splicey13 = [splicey13row1.length.to_s, splicey13row1.join, splicey13row2.join]
+
+  splicey14row1 = [1]
+  splicey14row2 = [0]
+  splicey14 = [splicey14row1.length.to_s, splicey14row1.join, splicey14row2.join]
+
+  splicey15row1 = [0]
+  splicey15row2 = [1]
+  splicey15 = [splicey15row1.length.to_s, splicey15row1.join, splicey15row2.join]
+
+  # check for t and n
   # question: splicey test case with back-to-back splices?
 
   # REMEMBER: N <= 10. Pass the tests, you have, then write&pass tests that take N into account.
@@ -79,11 +98,16 @@ describe HexSolution do
     splicey8[0], splicey8[1], splicey8[2],
     splicey9[0], splicey9[1], splicey9[2],
     splicey10[0], splicey10[1], splicey10[2],
-    splicey11[0], splicey11[1], splicey11[2]
+    splicey11[0], splicey11[1], splicey11[2],
+    # splicey12[0], splicey12[1], splicey12[2],
+    splicey13[0], splicey13[1], splicey13[2],
+    splicey14[0], splicey14[1], splicey14[2],
+    splicey15[0], splicey15[1], splicey15[2],
   ]
 
   splicey_tests.unshift (splicey_tests.length / 3).to_s
-  splicey_answers = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO']
+  splicey_answers = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES','YES',#10 on this line
+     'YES', 'YES', 'NO', 'NO']
 
   it 'returns the correct results' do
     expect(hexy.solution(test1)).to eq(answer1)
