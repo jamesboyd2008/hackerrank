@@ -31,7 +31,7 @@ class HexSolution
     result = []
 
     input = []
-    test_cases.each { |el| input << el }
+    test_cases.each { |el| input << el.chomp }
 
     test_case_quantity = input.shift.to_i
 
