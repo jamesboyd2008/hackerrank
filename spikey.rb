@@ -23,7 +23,7 @@ class HexSolution
     end
 
     result.each { |answer| puts answer } # what about last one? newline char?
-    # result
+    result
   end
 
   private
@@ -31,7 +31,6 @@ class HexSolution
   # INPUT: Two arrays
   # OUTPUT: boolean
   def clear?(row1, row2)
-    puts 'trigger' #nested? variable
     top_black_indeces = []
     row1.each_with_index do |cell, index|
       if cell == '1'
@@ -47,14 +46,18 @@ class HexSolution
       # legal slice?
       elsif row2[index] == '1'
         # Is there room to the left of the slice?
-        if row1[index - 1] != nil
+        if index != 0
+          # puts "row1 => #{row1.to_s}"
+          # puts "row1[index - 1] => #{row1[index - 1]}"
           left_grid = [row1[0..index - 1].join, row2[0..index - 1].join]
         else
           left_grid = ['0', '0']
+          # WHERE DOES THE RIGHT GRID COME FROM?!!!
         end
         # Is there room to the right of the slice?
         if row1[index + 1] != nil
           right_grid = [row1[index + 1..-1].join, row2[index + 1..-1].join]
+          # puts "right_grid: " + right_grid.to_s
         else
           right_grid = ['0', '0']
         end
@@ -76,5 +79,6 @@ class HexSolution
 
 end
 
+
 derp = HexSolution.new
-derp.solution ['1', '2', '01', '01']
+puts "herpnauts: " + (derp.solution ['1', '2', '10', '10'])[0]

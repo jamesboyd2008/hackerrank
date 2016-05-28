@@ -51,11 +51,22 @@ describe HexSolution do
   splicey8row2 = [1, 0, 0, 0]
   splicey8 = [splicey8row1.length.to_s, splicey8row1.join, splicey8row2.join]
 
-  # splicey8row1 = [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
-  # splicey8row2 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
-  # splicey8 = [splicey8row1.length.to_s, splicey8row1.join, splicey8row2.join]
+  splicey9row1 = [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+  splicey9row2 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+  splicey9 = [splicey9row1.length.to_s, splicey9row1.join, splicey9row2.join]
 
-  # pick up here. question: splicey test case with back-to-back splices?
+  splicey10row1 = [1, 1]
+  splicey10row2 = [1, 1]
+  splicey10 = [splicey10row1.length.to_s, splicey10row1.join, splicey10row2.join]
+
+  splicey11row1 = [1]
+  splicey11row2 = [1]
+  splicey11 = [splicey11row1.length.to_s, splicey11row1.join, splicey11row2.join]
+
+
+  # question: splicey test case with back-to-back splices?
+
+  # REMEMBER: N <= 10. Pass the tests, you have, then write&pass tests that take N into account.
 
   splicey_tests = [
     splicey1[0], splicey1[1], splicey1[2],
@@ -64,12 +75,15 @@ describe HexSolution do
     splicey4[0], splicey4[1], splicey4[2],
     splicey5[0], splicey5[1], splicey5[2],
     splicey6[0], splicey6[1], splicey6[2],
-    splicey7[0], splicey7[1], splicey7[2]
-    # splicey8[0], splicey8[1], splicey8[2]
+    splicey7[0], splicey7[1], splicey7[2],
+    splicey8[0], splicey8[1], splicey8[2],
+    splicey9[0], splicey9[1], splicey9[2],
+    splicey10[0], splicey10[1], splicey10[2],
+    splicey11[0], splicey11[1], splicey11[2]
   ]
 
   splicey_tests.unshift (splicey_tests.length / 3).to_s
-  splicey_answers = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES']#, 'YES']
+  splicey_answers = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO']
 
   it 'returns the correct results' do
     expect(hexy.solution(test1)).to eq(answer1)

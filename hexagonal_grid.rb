@@ -25,14 +25,9 @@
 
 class HexSolution
 
-  def initialize
-    @layers = 0
-  end
-  
   # INPUT: An array of test cases
   # OUTPUT: An array of answers regarding the passibility of those test cases.
   def solution test_cases
-    @layers += 1
     result = []
 
     input = []
@@ -46,7 +41,6 @@ class HexSolution
       row2 = input.shift.chars
 
       if (row1.count('1') + row2.count('1')).even? && clear?(row1, row2)
-
         result.push 'YES'
       else
         result.push 'NO'
@@ -62,6 +56,9 @@ class HexSolution
   # INPUT: Two arrays
   # OUTPUT: boolean
   def clear?(row1, row2)
+
+    return false if row1.count('0') == 0 # pick up here. Maybe return true?
+
     top_black_indeces = []
     row1.each_with_index do |cell, index|
       if cell == '1'
@@ -77,7 +74,7 @@ class HexSolution
       # legal slice?
       elsif row2[index] == '1'
         # Is there room to the left of the slice?
-        if row1[index - 1] != nil
+        if index != 0
           left_grid = [row1[0..index - 1].join, row2[0..index - 1].join]
         else
           left_grid = ['0', '0']
