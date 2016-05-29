@@ -42,7 +42,10 @@ class HexSolution
 
       # check for empty all
       # make the finite test cases, accounting for previous checks and n <= 10
-      if (row1.count('1') + row2.count('1')).even? && clear?(row1, row2)# && legit?(row1, row2, grid_length)
+
+      if (row1.count('1') + row2.count('1')).odd?
+        result.push 'NO'
+      elsif clear?(row1, row2)
         result.push 'YES'
       else
         result.push 'NO'
@@ -55,7 +58,7 @@ class HexSolution
 
   private
 
-  # INPUT: Two arrays
+  # INPUT: Two arrays. There is an even number of '1' in the combined arrays.
   # OUTPUT: boolean
   def clear?(row1, row2)
 
@@ -66,18 +69,28 @@ class HexSolution
       end
     end
 
-    # a 'slice' or 'splice' is when there is a black cell top-left of a black cell.
     top_black_indeces.each do |index|
-      # illegal slice?
+      # forward slash?
 
-      # this one is legal:
-      # [0, 0, 0, 1, 1, 0, 0]
-      #   [0, 0, 0, 1, 0, 0, 1]
+      # [0, 0, 0, 1, 0, 1, 1]
+      #   [0, 0, 1, 0, 0, 1, 0]
 
-      if row2[index - 1] == '1' && row1[index - 1] != '1'
-        return false
-      # legal slice?
-      elsif row2[index] == '1'
+      # IF a forward slash occurs,
+      # AND there exists EITHER
+      # an odd number of open cells OR
+      # an even number of ones
+      # (should one of these conditions occur, so will the other)
+      # THEN it's a NOGO.
+
+      # account for forward slash
+      if row2[index - 1] == '1' #&& row1[index - 1] != '1'
+        if (row1[0..index - 1].count('0') + row2[0..index - 2].count('0')).odd? ||
+          (row1[index + 1..-1].count('0') + row2[index..-1].count('0')).odd?
+          return false
+        end
+      end
+      # backslash?
+      if row2[index] == '1'
         # Is there room to the left of the slice?
         if index != 0
           left_grid = [row1[0..index - 1].join, row2[0..index - 1].join]
@@ -106,15 +119,6 @@ class HexSolution
     true
   end
 
-  def legit?(row1, row2, grid_length)
-    if row1.count('0') + row2.count('0') == 0 # Maybe return true?
-      return true
-    # elsif grid_length < 1 || grid_length > 10
-    #   return false
-    end
-
-    true
-  end
 end
 
 
@@ -157,9 +161,21 @@ end
                    'NO' ,'NO' ,'YES','NO' ,'YES','NO' ,'NO' ,'NO' ,'NO' ,'NO' ]
 
 
+answers = HexSolution.new.solution(case_3)
 
+i = 0
+j = 1
+while i < answers.length
+  if answers[i] != case_3_answer[i]
+    puts "Me: #{answers[i]}, It: #{case_3_answer[i]}"
+    puts "test: #{i}"
+    puts "row1: #{case_3[i * 3 + 2].chars.to_s}"
+    puts "row2:   #{case_3[i * 3 + 3].chars.to_s}"
+    j += 1
+  end
+  i += 1
+end
+puts "j: #{j}"
 
-run_it = ['4','1','0','0','1','1','0','1','0','1','1','1','1']
-
-puts HexSolution.new.solution(run_it) == ['YES', 'NO', 'NO', 'YES']
+puts "I succeeded: #{answers == case_3_answer}"
 # puts "twiggles: #{twiggles[0]}"
