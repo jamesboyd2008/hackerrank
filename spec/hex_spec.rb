@@ -165,15 +165,60 @@ describe HexSolution do
     expect(hexy.solution(case_3)).to eq(case_3_answer)
   end
 
+  it 'doesnt mis-identify isolated zeros' do
+    expect(hexy.isolated_zero? ['1', '1', '1'], ['1', '1', '1']).to eq(false)
+  end
+
+  # it 'has 200 status code if logged in' do
+  #   expect(response).to respond_with 200
+  # end
+  # it 'has 401 status code if not logged in' do
+  #   expect(response).to respond_with 401
+  # end
+
+
+  # context 'when logged in' do
+  #   it { is_expected.to respond_with 200 }
+  # end
+  # context 'when logged out' do
+  #   it { is_expected.to respond_with 401 }
+  # end
+
+
+  it 'identifies isolated zeros' do
+    expect(hexy.isolated_zero? ['0', '1', '1'], ['1', '1', '1']).to eq(true)
+    expect(hexy.isolated_zero? ['1', '0', '1'], ['1', '1', '1']).to eq(true)
+    expect(hexy.isolated_zero? ['1', '1', '0'], ['1', '1', '1']).to eq(true)
+    expect(hexy.isolated_zero? ['1', '1', '1'], ['0', '1', '1']).to eq(true)
+    expect(hexy.isolated_zero? ['1', '1', '1'], ['1', '0', '1']).to eq(true)
+    expect(hexy.isolated_zero? ['1', '1', '1'], ['1', '1', '0']).to eq(true)
+  end
+
+  context 'when a zero is barely isolated' do
+    it 'still outs it' do
+      expect(hexy.isolated_zero? ['1', '0', '1'], ['1', '1', '0']).to eq(true)
+      expect(hexy.isolated_zero? ['0', '1', '1'], ['1', '0', '1']).to eq(true)
+      expect(hexy.isolated_zero? ['1', '1', '0'], ['0', '1', '1']).to eq(true)
+      expect(hexy.isolated_zero? ['0', '1', '0'], ['1', '1', '1']).to eq(true)
+    end
+  end
+
+  context 'when just one zero is barely isolated amongst unisolated zeros' do
+    it 'still does the deed' do
+      expect(hexy.isolated_zero? ['0', '1', '1'], ['0', '1', '0']).to eq(true)
+    end
+  end
+
+
   too_much = []
   too_much_answer = []
-
-  # write an algorithm that populates too_much with all possible arrangements of
-  # 2 * N, such that 1 <= N <= 10
-  # possible passing combos...
 
   it 'passes so many tests' do
     expect(hexy.solution(too_much)).to eq(too_much_answer)
   end
-# pick up here: make tests for every fucking thing. 2 * 10 * everything
+# pick up here: If you create test cases for n = 5, you must root through
+# 500 cases, in person, to validate. You could drop that number if you only root
+#  through cases with minimal ones. 250 cases for a hex grid half-full of ones.
+#  Try generating a few test grids full of ones, except for a few blank spaces.
+#   Maybe run all existing code, then swapp all the ones with zeros.
 end
