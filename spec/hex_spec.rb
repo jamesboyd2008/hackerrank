@@ -148,6 +148,7 @@ describe HexSolution do
                    'NO' ,'NO' ,'YES','NO' ,'YES','NO' ,'NO' ,'NO' ,'NO' ,'YES',
                    'NO' ,'NO' ,'YES','NO' ,'YES','NO' ,'NO' ,'NO' ,'NO' ,'NO' ]
 
+
   it 'returns the correct results' do
     expect(hexy.solution(test1)).to eq(answer1)
   end
@@ -162,6 +163,17 @@ describe HexSolution do
 
   it 'solves hackerrank TestCase #3' do
     expect(hexy.solution(case_3)).to eq(case_3_answer)
+  end
+
+  too_much = []
+  too_much_answer = []
+
+  # write an algorithm that populates too_much with all possible arrangements of
+  # 2 * N, such that 1 <= N <= 10
+  # possible passing combos...
+
+  it 'passes so many tests' do
+    expect(hexy.solution(too_much)).to eq(too_much_answer)
   end
 # pick up here: make tests for every fucking thing. 2 * 10 * everything
 end

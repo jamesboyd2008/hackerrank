@@ -1,27 +1,8 @@
 # Impossible grids:
-
   # Any grid with an odd number of black cells
 
-  # [0, 0, 0, 1, 0, 0, 0]
-  #   [0, 0, 1, 0, 0, 0, 0]
-  # The one above is impossible because of the odd number of cells to the left of
-  # the black blockade.
-
-  # handle legal diagonal slice
-  # [0, 0, 1, 0, 0]
-  #   [1, 0, 1, 0, 1]
-
-  # legal diagonal slice creates problems on both sides.
-  # [0, 0, 1, 0]
-  #   [1, 0, 1, 1]
-
-
-
-  # [0, 0, 0, 0, 0, 0, 0]
-  #   [0, 0, 0, 0, 0, 0, 0]
-
 # r = red, m = maroon, y = yellow
-# 1 = black, 0 != black
+# 1 = black, 0 = empty
 
 class HexSolution
 
