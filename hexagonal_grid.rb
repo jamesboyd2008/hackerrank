@@ -133,13 +133,6 @@ class HexSolution
          (row2[index - 1] == '1' || index == row2.length - 1)
         if (row1 == ['1', '1', '1'] && row2 == ['1', '1', '0']) ||
           (row1 == ['0', '1', '1'] && row2 == ['0', '1', '0'])
-          puts "row1: #{row1.to_s}"
-          puts "row2:   #{row2.to_s}"
-          puts "row1[#{index}]: #{row1[index]}"
-          puts "row1[index - 1]: #{row1[index - 1]}"
-          puts "row1[index + 1]: #{row1[index + 1]}"
-          puts "row2[index] (bottom-right): #{row2[index]}"
-          puts "row2[index - 1] (bottom-left): #{row2[index - 1]}"
         end
         return true
       end
@@ -152,13 +145,6 @@ class HexSolution
          (row1[index + 1] == '1' || index == row1.length - 1)
          if (row1 == ['1', '1', '1'] && row2 == ['1', '1', '0']) ||
            (row1 == ['0', '1', '1'] && row2 == ['0', '1', '0'])
-           puts "row1: #{row1.to_s}"
-           puts "row2:   #{row2.to_s}"
-           puts "row1[#{index}]: #{row1[index]}"
-           puts "row1[index - 1]: #{row1[index - 1]}"
-           puts "row1[index + 1]: #{row1[index + 1]}"
-           puts "row2[index] (bottom-right): #{row2[index]}"
-           puts "row2[index - 1] (bottom-left): #{row2[index - 1]}"
          end
         return true
       end

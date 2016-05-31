@@ -169,22 +169,6 @@ describe HexSolution do
     expect(hexy.isolated_zero? ['1', '1', '1'], ['1', '1', '1']).to eq(false)
   end
 
-  # it 'has 200 status code if logged in' do
-  #   expect(response).to respond_with 200
-  # end
-  # it 'has 401 status code if not logged in' do
-  #   expect(response).to respond_with 401
-  # end
-
-
-  # context 'when logged in' do
-  #   it { is_expected.to respond_with 200 }
-  # end
-  # context 'when logged out' do
-  #   it { is_expected.to respond_with 401 }
-  # end
-
-
   it 'identifies isolated zeros' do
     expect(hexy.isolated_zero? ['0', '1', '1'], ['1', '1', '1']).to eq(true)
     expect(hexy.isolated_zero? ['1', '0', '1'], ['1', '1', '1']).to eq(true)
@@ -209,9 +193,22 @@ describe HexSolution do
     end
   end
 
+  # two_by_twos = []
+  #
+  #
+  #
+  # two_by_twos.unshift (two_by_twos.length / 3).to_s
+  # two_by_twos_answer = ['YES']
+  # context ' when assessing a 2x2 hex grid ' do
+  #   it 'does it right' do
+  #     expect(hexy.solution(two_by_twos)).to eq('')
+  #   end
+  # end
 
   too_much = []
   too_much_answer = []
+
+
 
   it 'passes so many tests' do
     expect(hexy.solution(too_much)).to eq(too_much_answer)
