@@ -16,12 +16,6 @@ describe HexSolution do
   #   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
-  # splicey8row1 = [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
-  #   splicey8row2 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
-
-# splicey1row1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] #peanuts, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-
   splicey1row1 = [0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
   splicey1row2 = [0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
   splicey1 = [splicey1row1.length.to_s, splicey1row1.join, splicey1row2.join]
