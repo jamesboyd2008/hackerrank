@@ -1,8 +1,6 @@
+require 'csv'
+
 n_from_5_to_3 = []
-#
-# [n_is_2, n_is_3, n_is_4, n_is_5].each do |test_set|
-#   test_set.unshift (test_set.length / 3).to_s
-# end
 
 num = 1023 # for n = 5
 while num > 15
@@ -16,9 +14,23 @@ while num > 15
   num -= 1
 end
 
-n_from_5_to_3.unshift (n_from_5_to_3.length / 3).to_s
+result = []
 
-puts n_from_5_to_3
+i = 1
+while i < n_from_5_to_3.length
+  row1 = n_from_5_to_3[i].chars
+  # puts n_from_5_to_3[i + 1]
+  row2 = n_from_5_to_3[i + 1].chars
+  if (row1.count('1') + row2.count('1')).even?
+    result << n_from_5_to_3[i - 1] << row1.join << row2.join
+  end
+  i += 3
+end
 
-0, 1, 0, 1, 0
-  0, 1, 0, 1, 0
+result.unshift (result.length / 3).to_s
+
+# CSV.open('test_data.csv', 'wb') do |csv|
+#   result.each do |element|
+#     csv << [element]
+#   end
+# end
