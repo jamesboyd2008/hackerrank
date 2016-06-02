@@ -142,6 +142,76 @@ describe HexSolution do
                    'NO' ,'NO' ,'YES','NO' ,'YES','NO' ,'NO' ,'NO' ,'NO' ,'YES',
                    'NO' ,'NO' ,'YES','NO' ,'YES','NO' ,'NO' ,'NO' ,'NO' ,'NO' ]
 
+  n_from_5_to_3 = []
+
+  num = 1023 # for n = 5
+  while num > 15
+    binary = num.to_s 2
+    if binary.chars.length % 2 == 0
+      temp_n = binary.chars.length / 2
+      row1 = binary.chars[0..temp_n - 1].join
+      row2 = binary.chars[temp_n..-1].join
+      n_from_5_to_3 << temp_n.to_s << row1 << row2
+    end
+    num -= 1
+  end
+
+  test_data = []
+
+  i = 1
+  while i < n_from_5_to_3.length
+    row1 = n_from_5_to_3[i].chars
+    # puts n_from_5_to_3[i + 1]
+    row2 = n_from_5_to_3[i + 1].chars
+    if (row1.count('1') + row2.count('1')).even?
+      test_data << n_from_5_to_3[i - 1] << row1.join << row2.join
+    end
+    i += 3
+  end
+
+  test_data.unshift (test_data.length / 3).to_s
+
+  # CSV.open('test_data.csv', 'wb') do |csv|
+  #   result.each do |element|
+  #     csv << [element]
+  #   end
+  # end
+
+
+  test_data_answer = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES',
+    'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO',
+    'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES',
+    'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO', 'NO', 'YES', 'NO', 'NO',
+     'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO',
+     'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'NO',
+     'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'NO', 'NO',
+      'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO',
+      'YES', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES',
+      'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES',
+      'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
+      'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'NO',
+      'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO',
+      'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES',
+      'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'NO',
+      'NO', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO',
+       'NO', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES',
+       'YES', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES',
+        'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO',
+         'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES',
+         'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'YES',
+         'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES',
+         'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
+         'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
+         'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES',
+          'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
+          'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO', 'NO',
+          'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES',
+          'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
+          'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
+          'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
+           'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES']
+
+
 
   it 'returns the correct results' do
     expect(hexy.solution(test1)).to eq(answer1)
@@ -199,17 +269,8 @@ describe HexSolution do
   #   end
   # end
 
-  too_much = []
-  too_much_answer = []
-
-
-
-  it 'passes so many tests' do
-    expect(hexy.solution(too_much)).to eq(too_much_answer)
+  it 'solves N from 5 to 3' do
+    expect(hexy.solution(test_data)).to eq(test_data_answer)
   end
-# pick up here: If you create test cases for n = 5, you must root through
-# 500 cases, in person, to validate. You could drop that number if you only root
-#  through cases with minimal ones. 250 cases for a hex grid half-full of ones.
-#  Try generating a few test grids full of ones, except for a few blank spaces.
-#   Maybe run all existing code, then swapp all the ones with zeros.
+
 end
