@@ -30,7 +30,7 @@ class HexSolution
       elsif clear?(row1, row2)
         result.push 'YES'
       else
-        puts 'there'
+        puts "THERE: #{clear?(row1, row2)}"
         result.push 'NO'
       end
     end
@@ -63,20 +63,18 @@ class HexSolution
       # [1, 1, 1, j, 1, 1, 1]
       #   [1, 1, 1, j, 1, 1, 1]
 
-      # IF a forward slash occurs,
-      # AND there exists EITHER
-      # an odd number of open cells OR
-      # an even number of ones
-      # (should one of these conditions occur, so will the other)
-      # THEN it's a NOGO.
 
+      # pick up here: account for index dipping below zero
       # account for forward slash
-      if row2[index - 1] == '1' #&& row1[index - 1] != '1'
-        if (row1[0..index - 1].count('0') + row2[0..index - 2].count('0')).odd? ||
+      if row2[index - 1] == '1' && index > 0
+        # account for forward slash cornering a 1 (a GO situation)
+        if index == 1
+          return false if row1.first == '0'
+        elsif (row1[0..index - 1].count('0') + row2[0..index - 2].count('0')).odd? ||
           (row1[index + 1..-1].count('0') + row2[index..-1].count('0')).odd?
-          puts (row1[0..index - 1].count('0') + row2[0..index - 2].count('0')).odd?
-          puts "row1: #{row1[0..index - 1].to_s}"
-          puts "row2: #{row2[0..index - 2].to_s}"
+          puts (row1[0..index - 1].count('0') + row2[0..index - 2].count('0'))
+          puts "row1: #{row1[0..(index - 1)].to_s}"
+          puts "row2: #{row2[0..(index - 2)].to_s}"
           puts 'hither'
           return false
         end
@@ -137,10 +135,7 @@ class HexSolution
       if ((row1[index - 1] == '1' && index > 0) || index == 0) &&
          (row1[index + 1] == '1' || index == row1.length - 1) &&
          row2[index] == '1' &&
-         (row2[index - 1] == '1' || index == row2.length - 1)
-        if (row1 == ['1', '1', '1'] && row2 == ['1', '1', '0']) ||
-          (row1 == ['0', '1', '1'] && row2 == ['0', '1', '0'])
-        end
+         (row2[index - 1] == '1' || index == 0)
         return true
       end
     end
@@ -150,9 +145,6 @@ class HexSolution
          (row2[index + 1] == '1' || index == row2.length - 1) &&
          row1[index] == '1' &&
          (row1[index + 1] == '1' || index == row1.length - 1)
-         if (row1 == ['1', '1', '1'] && row2 == ['1', '1', '0']) ||
-           (row1 == ['0', '1', '1'] && row2 == ['0', '1', '0'])
-         end
         return true
       end
     end
@@ -165,4 +157,92 @@ end
 # [1, 1, 1, 1, 0]
 #   [1, 1, 1, 1, 0]
 
-puts HexSolution.new.solution ['1', '5', '11110', '11110']
+# puts HexSolution.new.solution ['1', '5', '11110', '11101']
+
+n_from_5_to_3 = []
+
+num = 1023 # for n = 5
+while num > 15
+  binary = num.to_s 2
+  if binary.chars.length % 2 == 0
+    temp_n = binary.chars.length / 2
+    row1 = binary.chars[0..temp_n - 1].join
+    row2 = binary.chars[temp_n..-1].join
+    n_from_5_to_3 << temp_n.to_s << row1 << row2
+  end
+  num -= 1
+end
+
+test_data = []
+
+i = 1
+while i < n_from_5_to_3.length
+  row1 = n_from_5_to_3[i].chars
+  # puts n_from_5_to_3[i + 1]
+  row2 = n_from_5_to_3[i + 1].chars
+  if (row1.count('1') + row2.count('1')).even?
+    test_data << n_from_5_to_3[i - 1] << row1.join << row2.join
+  end
+  i += 3
+end
+
+test_data.unshift (test_data.length / 3).to_s
+
+# CSV.open('test_data.csv', 'wb') do |csv|
+#   result.each do |element|
+#     csv << [element]
+#   end
+# end
+
+
+test_data_answer = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES',
+  'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO',
+  'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES',
+  'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO', 'NO', 'YES', 'NO', 'NO',
+  'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO',
+  'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'NO',
+  'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'NO', 'NO',
+  'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO']#,
+  # 'YES', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES',
+  # 'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES',
+  # 'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
+  # 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'NO',
+  # 'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO',
+  # 'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES',
+  # 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'NO',
+  # 'NO', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO',
+  # 'NO', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES',
+  # 'YES', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES',
+  # 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO',
+  # 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES',
+  # 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'YES',
+  # 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES',
+  # 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
+  # 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
+  # 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES',
+  # 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
+  # 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO', 'NO',
+  # 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES',
+  # 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
+  # 'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
+  # 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
+  # 'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES']
+
+wrongness = 0
+hexy = HexSolution.new
+test_data.shift
+test_data_answer.length.times do |grid|
+  length = test_data.shift
+  row1 = test_data.shift
+  row2 = test_data.shift
+  test_case = ['1', length, row1, row2]
+  if hexy.solution(test_case).first == test_data_answer[grid]
+    correctness = ''
+  else
+    wrongness += 1
+    correctness = 'WROOÖOOOOOOOOONNNNGGG'
+  end
+  puts "grid: #{grid + 1}, expected: #{test_data_answer[grid]}, got: #{hexy.solution(test_case)[0]}#{correctness}"
+end
+
+puts "wrongness: #{wrongness}"

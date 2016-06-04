@@ -1,5 +1,4 @@
-# expected, got, (97 wrong out of 336)
-# "YES", "YES",  11111,11111,
+# "YES", "YES",  11111,11111, # expected, got, (97 wrong out of 336)
 # "YES", "YES",  11111,11100,
 # "NO",  "NO",  11111,11010,
 # "YES", "YES",  11111,11001,

@@ -69,7 +69,7 @@ class HexSolution
       # THEN it's a NOGO.
 
       # account for forward slash
-      if row2[index - 1] == '1' #&& row1[index - 1] != '1'
+      if row2[index - 1] == '1' && index > 0
         if (row1[0..index - 1].count('0') + row2[0..index - 2].count('0')).odd? ||
           (row1[index + 1..-1].count('0') + row2[index..-1].count('0')).odd?
           return false
