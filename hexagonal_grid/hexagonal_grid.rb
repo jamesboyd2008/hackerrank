@@ -1,9 +1,3 @@
-# Impossible grids:
-  # Any grid with an odd number of black cells
-
-# r = red, m = maroon, y = yellow
-# 1 = black, 0 = empty
-
 class HexSolution
 
   # INPUT: An array of test cases
@@ -20,10 +14,6 @@ class HexSolution
       grid_length = input.shift.to_i
       row1 = input.shift.chars
       row2 = input.shift.chars
-
-      # check for empty all
-      # make the finite test cases, accounting for previous checks and n <= 10
-
       if (row1.count('1') + row2.count('1')).odd?
         result.push 'NO'
       elsif clear?(row1, row2)
@@ -33,13 +23,10 @@ class HexSolution
       end
     end
 
-    # result.each { |answer| puts answer } # what about last one? newline char?
     result
   end
 
-  # private
-
-  # INPUT: Two arrays. There is an even number of '1' in the combined arrays.
+  # INPUT: Two arrays.
   # OUTPUT: boolean
   def clear?(row1, row2)
 
@@ -53,24 +40,13 @@ class HexSolution
     end
 
     top_black_indeces.each do |index|
+
       # forward slash?
-
-      # [0, 0, 0, 1, 0, 1, 1]
-      #   [0, 0, 1, 0, 0, 1, 0]
-
-      # [1, 1, 1, j, 1, 1, 1]
-      #   [1, 1, 1, j, 1, 1, 1]
-
-      # IF a forward slash occurs,
-      # AND there exists EITHER
-      # an odd number of open cells OR
-      # an even number of ones
-      # (should one of these conditions occur, so will the other)
-      # THEN it's a NOGO.
-
-      # account for forward slash
-      if row2[index - 1] == '1' #&& row1[index - 1] != '1'
-        if (row1[0..index - 1].count('0') + row2[0..index - 2].count('0')).odd? ||
+      if row2[index - 1] == '1' && index > 0
+        # account for forward slash cornering a 1 (a GO situation)
+        if index == 1
+          return false if row1.first == '0'
+        elsif (row1[0..index - 1].count('0') + row2[0..index - 2].count('0')).odd? ||
           (row1[index + 1..-1].count('0') + row2[index..-1].count('0')).odd?
           return false
         end
@@ -125,15 +101,10 @@ class HexSolution
 
 
     row1_indeces.each do |index|
-      # Is the zero isolated?
-
       if ((row1[index - 1] == '1' && index > 0) || index == 0) &&
          (row1[index + 1] == '1' || index == row1.length - 1) &&
          row2[index] == '1' &&
-         (row2[index - 1] == '1' || index == row2.length - 1)
-        if (row1 == ['1', '1', '1'] && row2 == ['1', '1', '0']) ||
-          (row1 == ['0', '1', '1'] && row2 == ['0', '1', '0'])
-        end
+         (row2[index - 1] == '1' || index == 0)
         return true
       end
     end
@@ -143,9 +114,6 @@ class HexSolution
          (row2[index + 1] == '1' || index == row2.length - 1) &&
          row1[index] == '1' &&
          (row1[index + 1] == '1' || index == row1.length - 1)
-         if (row1 == ['1', '1', '1'] && row2 == ['1', '1', '0']) ||
-           (row1 == ['0', '1', '1'] && row2 == ['0', '1', '0'])
-         end
         return true
       end
     end
