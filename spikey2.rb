@@ -25,12 +25,10 @@ class HexSolution
       # make the finite test cases, accounting for previous checks and n <= 10
 
       if (row1.count('1') + row2.count('1')).odd?
-        puts 'here'
         result.push 'NO'
       elsif clear?(row1, row2)
         result.push 'YES'
       else
-        puts "THERE: #{clear?(row1, row2)}"
         result.push 'NO'
       end
     end
@@ -57,14 +55,9 @@ class HexSolution
     top_black_indeces.each do |index|
       # forward slash?
 
-      # [0, 0, 0, 1, 0, 1, 1]
-      #   [0, 0, 1, 0, 0, 1, 0]
+      # 1, 1, 0, 1, 1
+      #   1, 0, 0, 1, 0
 
-      # [1, 1, 1, j, 1, 1, 1]
-      #   [1, 1, 1, j, 1, 1, 1]
-
-
-      # pick up here: account for index dipping below zero
       # account for forward slash
       if row2[index - 1] == '1' && index > 0
         # account for forward slash cornering a 1 (a GO situation)
@@ -72,10 +65,6 @@ class HexSolution
           return false if row1.first == '0'
         elsif (row1[0..index - 1].count('0') + row2[0..index - 2].count('0')).odd? ||
           (row1[index + 1..-1].count('0') + row2[index..-1].count('0')).odd?
-          puts (row1[0..index - 1].count('0') + row2[0..index - 2].count('0'))
-          puts "row1: #{row1[0..(index - 1)].to_s}"
-          puts "row2: #{row2[0..(index - 2)].to_s}"
-          puts 'hither'
           return false
         end
       end
@@ -101,7 +90,6 @@ class HexSolution
           right_grid[0], right_grid[1]])[0]
 
         if left_passibility == "NO" || right_passibility == "NO"
-          puts 'thither'
           return false
         end
       end
@@ -200,9 +188,9 @@ test_data_answer = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES',
   'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES',
   'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO', 'NO', 'YES', 'NO', 'NO',
   'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO',
-  'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'NO',
-  'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'NO', 'NO',
-  'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO']#,
+  'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', #last one here is 64
+  'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'NO', #75
+  'NO', 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES']#, #86
   # 'YES', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES',
   # 'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES',
   # 'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
