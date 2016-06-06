@@ -12,10 +12,6 @@ describe HexSolution do
           '5', '00100', '10101', '4', '0010', '1011']
   answer2 = ['NO', 'NO', 'NO', 'NO']
 
-  # [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  #   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-
   splicey1row1 = [0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
   splicey1row2 = [0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
   splicey1 = [splicey1row1.length.to_s, splicey1row1.join, splicey1row2.join]
@@ -76,11 +72,6 @@ describe HexSolution do
   splicey15row2 = [1]
   splicey15 = [splicey15row1.length.to_s, splicey15row1.join, splicey15row2.join]
 
-  # check for t and n
-  # question: splicey test case with back-to-back splices?
-
-  # REMEMBER: N <= 10. Pass the tests, you have, then write&pass tests that take N into account.
-
   splicey_tests = [
     splicey1[0], splicey1[1], splicey1[2],
     splicey2[0], splicey2[1], splicey2[2],
@@ -100,8 +91,8 @@ describe HexSolution do
   ]
 
   splicey_tests.unshift (splicey_tests.length / 3).to_s
-  splicey_answers = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES','YES',#10 on this line
-     'YES', 'YES', 'NO', 'NO']
+  splicey_answers = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES',
+    'YES', 'YES', 'YES', 'NO', 'NO']
 
 
   case_3 = ['100','4','1001','1100','4','0111','0010','4','1000','0011','4',
@@ -161,7 +152,6 @@ describe HexSolution do
   i = 1
   while i < n_from_5_to_3.length
     row1 = n_from_5_to_3[i].chars
-    # puts n_from_5_to_3[i + 1]
     row2 = n_from_5_to_3[i + 1].chars
     if (row1.count('1') + row2.count('1')).even?
       test_data << n_from_5_to_3[i - 1] << row1.join << row2.join
@@ -178,38 +168,41 @@ describe HexSolution do
   # end
 
 
-  test_data_answer = ['YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES',
-    'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO',
-    'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES',
-    'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO', 'NO', 'YES', 'NO', 'NO',
-    'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO',
-    'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'NO',
-    'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'NO', 'NO',
-    'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO',
-    'YES', 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES',
-    'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES',
-    'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
-    'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'NO',
-    'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO',
-    'NO', 'YES', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES',
-    'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'NO',
-    'NO', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'NO',
-    'NO', 'YES', 'NO', 'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES',
-    'YES', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES',
-    'NO', 'NO', 'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO',
-    'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES',
-    'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'NO', 'YES',
-    'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES', 'NO', 'YES',
-    'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
-    'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
-    'YES', 'YES', 'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES',
-    'NO', 'YES', 'NO', 'NO', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
-    'NO', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO', 'NO',
-    'YES', 'YES', 'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES',
-    'NO', 'NO', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
-    'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES',
-    'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'NO', 'YES', 'YES', 'YES',
-    'NO', 'YES', 'NO', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES']
+  test_data_answer = [
+    "YES", "YES", "NO",  "YES", "NO",  "NO",  "YES", "YES", "NO", "NO",
+    "NO",  "NO",  "YES", "YES", "NO",  "YES", "YES", "YES", "NO",  "YES",
+    "NO",  "NO",  "YES", "YES", "NO",  "NO",  "NO",  "NO",  "YES", "YES",
+    "NO",  "YES", "NO",  "YES", "YES", "YES", "NO",  "NO",  "NO",  "YES",
+    "NO",  "NO",  "NO",  "NO",  "NO",  "YES", "YES", "YES", "YES", "YES",
+    "YES", "YES", "NO",  "NO",  "YES", "YES", "NO",  "NO",  "NO",  "NO",
+    "YES", "YES", "YES", "YES", "NO",  "NO",  "YES", "YES", "YES", "YES",
+    "NO",  "YES", "NO",  "NO",  "NO",  "NO",  "NO",  "NO",  "YES", "YES",
+    "NO",  "NO",  "YES", "YES", "YES", "YES", "NO",  "YES", "NO",  "NO",
+    "NO",  "NO",  "NO",  "NO",  "YES", "YES", "YES", "YES", "NO",  "YES",
+    "NO",  "YES", "YES", "YES", "NO",  "NO",  "NO",  "NO",  "YES", "YES",
+    "NO",  "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES",
+    "NO",  "NO",  "NO",  "NO",  "YES", "YES", "YES", "YES", "NO",  "NO",
+    "NO",  "NO",  "YES", "YES", "NO",  "YES", "YES", "YES", "NO",  "YES",
+    "NO",  "NO",  "YES", "YES", "NO",  "NO",  "NO",  "NO",  "YES", "YES",
+    "NO",  "YES", "YES", "YES", "NO",  "YES", "NO",  "NO",  "YES", "YES",
+    "NO",  "NO",  "NO",  "NO",  "NO",  "YES", "YES", "YES", "NO",  "YES",
+    "YES", "YES", "NO",  "NO",  "NO",  "YES", "NO",  "NO",  "NO",  "NO",
+    "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "NO",  "NO",
+    "YES", "YES", "YES", "YES", "NO",  "YES", "NO",  "NO",  "YES", "YES",
+    "NO",  "NO",  "YES", "YES", "YES", "YES", "NO",  "YES", "YES", "YES",
+    "NO",  "YES", "NO",  "NO",  "YES", "YES", "NO",  "NO",  "YES", "YES",
+    "YES", "YES", "NO",  "YES", "NO",  "YES", "YES", "YES", "YES", "YES",
+    "NO",  "YES", "YES", "YES", "NO",  "YES", "NO",  "YES", "YES", "YES",
+    "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES",
+    "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "NO",  "YES",
+    "NO",  "NO",  "YES", "YES", "YES", "YES", "NO",  "YES", "NO",  "NO",
+    "YES", "YES", "NO",  "YES", "YES", "YES", "NO",  "NO",  "NO",  "YES",
+    "YES", "YES", "YES", "YES", "NO",  "NO",  "YES", "YES", "NO",  "NO",
+    "YES", "YES", "YES", "YES", "NO",  "YES", "NO",  "NO",  "YES", "YES",
+    "YES", "YES", "NO",  "YES", "YES", "YES", "NO",  "YES", "NO",  "YES",
+    "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES",
+    "YES", "YES", "NO",  "YES", "YES", "YES", "NO",  "YES", "NO",  "YES",
+    "YES", "YES", "YES", "YES", "YES", "YES"]
 
 
 
@@ -256,33 +249,6 @@ describe HexSolution do
       expect(hexy.isolated_zero? ['0', '1', '1'], ['0', '1', '0']).to eq(true)
     end
   end
-
-  # two_by_twos = []
-  #
-  #
-  #
-  # two_by_twos.unshift (two_by_twos.length / 3).to_s
-  # two_by_twos_answer = ['YES']
-  # context ' when assessing a 2x2 hex grid ' do
-  #   it 'does it right' do
-  #     expect(hexy.solution(two_by_twos)).to eq('')
-  #   end
-  # end
-
-
-  # this didn't work because the spec didn't run until the loop was done
-  # i, j = 1, 0
-  # while i < test_data.length
-  #   grid_length = test_data[i].to_s
-  #   row1 = test_data[i + 1]
-  #   row2 = test_data[i + 2]
-  #   test_case = ['1', grid_length, row1, row2]
-  #   it "solves test_data case #{j}" do
-  #     expect(hexy.solution(test_case)).to eq(test_data_answer[j])
-  #   end
-  #   i += 3
-  #   j += 1
-  # end
 
   it 'solves N from 5 to 3' do
     expect(hexy.solution(test_data)).to eq(test_data_answer)
