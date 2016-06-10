@@ -1,6 +1,6 @@
 # Solution#insert, given the first node in a linked list, and enough data to
 # construct a new node, inserts a new node at the end of a linked list based on
-# the provided data, and returns the first node in the list. 
+# the provided data, and returns the first node in the list.
 # This is my solution to the problem at
 # https://www.hackerrank.com/challenges/30-linked-list.
 
