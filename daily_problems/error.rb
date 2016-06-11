@@ -1,9 +1,5 @@
-# Use built-in String-to-Integer and exception handling constructs to convert
-# a string to an integer.
+# convert a string into an integer.
+# from https://www.hackerrank.com/challenges/30-exceptions-string-to-integer
 
-#!/bin/ruby
-
-S = gets.strip
-
-puts S.to_i
-# 'Bad String'
+s = gets.strip
+puts ((s.to_i != 0 || s == '0') ? s.to_i : 'Bad String')
