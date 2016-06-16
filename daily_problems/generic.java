@@ -6,10 +6,14 @@
 import java.lang.reflect.Method;
 
 class Solution {
-  
+
   public static <E> void printArray(E[] genericArray) {
-    for (int i = 0; i < genericArray.length; i++) {
-      E element = genericArray[i];
+    // for (int i = 0; i < genericArray.length; i++) {
+    //   E element = genericArray[i];
+    //   System.out.println(element);
+    // }
+    // *************refactored below*****************
+    for (E element : genericArray) {
       System.out.println(element);
     }
   }
