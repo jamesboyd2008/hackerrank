@@ -11,7 +11,7 @@ class Node
 end
 
 class Solution
-  def insert (root,data)
+  def insert (root, data)
     if root == nil
       return Node.new(data)
     else
@@ -27,7 +27,14 @@ class Solution
   end
 
   def getHeight(root)
-    #Write your code here
+    result = [0, 0]
+    if root.left
+      result[0] += 1 + getHeight(root.left)
+    end
+    if root.right
+      result[1] += 1 + getHeight(root.right)
+    end
+    return result.max
   end
 end
 
