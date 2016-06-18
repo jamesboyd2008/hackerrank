@@ -1,5 +1,6 @@
 # from https://www.hackerrank.com/challenges/30-binary-search-trees
-# Write a method, Solution#getHeight, that returns the height of a binary tree.
+# Write a method, Solution#levelOrder, that prints the nodes of a
+# binary search tree by level, from top to bottom.
 
 class Node
   attr_accessor :left, :right, :data
@@ -27,29 +28,20 @@ class Solution
   end
 
   def levelOrder root
-    # takes the root, puts in array
-    # prints everything in array
-    # then makes array of all childre
-    # prints them
-    result = [root.data]
+    result = [root]
 
     done = false
 
-    while !done
-      if !root.left && !root.right
-        done = true
-        break
+    result.each do |node|
+      if node.left
+        result << node.left
       end
-      if root.left
-        result << root.left
-      end
-      if root.right
-        result << root.right
+      if node.right
+        result << node.right
       end
     end
 
-    # take trailing whitespace into account
-    result.each { |data| print "#{data} "}
+    result.each { |node| print "#{node.data} "}
   end
 end
 
