@@ -95,7 +95,7 @@
 #   'Prime'
 # end
 
-# sieve of eratosthenes
+# attempt at sieve of eratosthenes
 def primeSieve(n)
   primes = Array.new
 
@@ -118,3 +118,43 @@ def primeSieve(n)
 end
 
 puts primeSieve(ARGV[0].to_i).to_s
+
+# Attempted JS implementation below. Failed tests and was too slow.
+# function processData(input) {
+#   var nums = input.split('\n');
+#   nums.shift();
+#   var answers = [];
+#
+#   nums.forEach(function(num){
+#     var nume = parseInt(num)
+#     var P = [1, 2], j, k, l = 3
+#
+#     for (k = 3 ; k <= nume + 1 ; k += 2){
+#       loop: if (++l < 5){
+#         for (j = 2 ; P[j] <= Math.sqrt(k) ; ++j)
+#           if (k % P[j] == 0) break loop
+#           P[P.length] = k
+#       } else l = 0
+#     }
+#
+#     //console.log("Nume: " + nume);
+#     if (nume === 5) {
+#       console.log('Prime');
+#     } else if(P.slice(P.length - 2, P.length).includes(nume)) {
+#       console.log('Prime')
+#     } else {
+#       console.log('Not prime')
+#     }
+#   })
+# }
+#
+# process.stdin.resume();
+# process.stdin.setEncoding("ascii");
+# _input = "";
+# process.stdin.on("data", function (input) {
+#     _input += input;
+# });
+#
+# process.stdin.on("end", function () {
+#    processData(_input);
+# });
