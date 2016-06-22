@@ -52,33 +52,69 @@
   # 'Prime'
 # end
 
-# siev of eratosthenes
-def prime? num
-  nums = (2..num).to_a
+# Time elapsed: 211.863636 seconds
+# def prime? num
+#   start = Time.now
+#   nums = (2..num).to_a
+#   # puts nums.to_s
+#
+#   if num == 1 || num < 2
+#     return 'Not prime'
+#   end
+# # still cut it off half way
+#
+#   half = num / 2
+#   i = 0
+#   while i < nums.length # nums[i] <= half
+#     if num % nums[i] == 0
+#       finish = Time.now
+#       puts "Time elapsed: #{finish - start} seconds"
+#       return 'Not prime'
+#     end
+#
+#     j = i + 1
+#     while j < nums.length # nums[j] <= half
+#       if nums[j] % nums[i] == 0
+#         nums.delete_at j
+#       end
+#       j += 1
+#     end
+#
+#     puts "Just removed #{nums[i]}"
+#     if nums.last != num
+#       finish = Time.now
+#       puts "Time elapsed: #{finish - start} seconds"
+#       return 'Not prime'
+#     end
+#     i += 1
+#   end
+#
+#
+#   finish = Time.now
+#   puts "Time elapsed: #{finish - start} seconds"
+#   'Prime'
+# end
 
-  if num == 1 || num < 2
-    return 'Not prime'
+# sieve of eratosthenes
+def primeSieve(n)
+  primes = Array.new
+
+  for i in 0..n-2
+   primes[i] = i+2
   end
-# still cut it off half way
 
-  i = 0
-  while i < nums.length && nums[i] <= num / 2
-
-    j = i + 1
-    while j < nums.length
-      puts nums.to_s
-      if nums[j] % nums[i] == 0
-        nums.delete_at j
+  index = 0
+  while Math.sqrt(primes.last).ceil >= primes[index]
+    (primes[index] * 2).step(primes.last, primes[index]) do |x|
+      if x == n
+        return 'Not Prime'
       end
-      j += 1
+      primes.delete(x)
     end
-
-    return 'Not prime' if nums.last != num
-    i += 1
+    index += 1
   end
-
 
   'Prime'
 end
 
-prime? 12
+puts primeSieve(ARGV[0].to_i).to_s
